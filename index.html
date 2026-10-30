@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>강태영 · 스포츠과학과 학생</title>
+<meta name="description" content="돈 많이 벌고 건강하고 싶은 스포츠과학과 학생 강태영의 소개 페이지입니다.">
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --surface: #121214;
+    --surface-soft: #17161a;
+    --fg: #f6f3ea;
+    --muted: #a8a296;
+    --line: rgba(212, 175, 55, 0.18);
+    --line-strong: rgba(212, 175, 55, 0.45);
+    --accent: #d4af37;
+    --accent-light: #f0d98a;
+    --accent-dark: #a8862a;
+    --accent-soft: rgba(212, 175, 55, 0.1);
+    --max: 960px;
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 18px; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo",
+      "Malgun Gothic", "맑은 고딕", Roboto, sans-serif;
+    background:
+      radial-gradient(1100px 620px at 85% -12%, rgba(212, 175, 55, 0.14), transparent 60%),
+      radial-gradient(900px 560px at 0% 108%, rgba(212, 175, 55, 0.07), transparent 62%),
+      var(--bg);
+    background-attachment: fixed;
+    color: var(--fg);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: #0a0a0b; }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    width: 100%;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 10, 11, 0.82);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .nav .brand {
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--accent-light);
+  }
+  .nav ul {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .nav ul a { transition: color 0.2s ease; }
+  .nav ul a:hover { color: var(--accent); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 130px 0 110px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero .eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--line-strong);
+    padding: 8px 18px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6.5vw, 3.9rem);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    color: var(--fg);
+    margin-bottom: 24px;
+    max-width: 16ch;
+    text-shadow: 0 2px 40px rgba(212, 175, 55, 0.12);
+  }
+  .hero p {
+    font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+    color: var(--muted);
+    max-width: 48ch;
+    margin-bottom: 40px;
+  }
+  .buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease,
+      border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent-light), var(--accent) 55%, var(--accent-dark));
+    color: #0a0a0b;
+  }
+  .btn-primary:hover { box-shadow: 0 12px 30px rgba(212, 175, 55, 0.25); }
+  .btn-ghost {
+    border-color: var(--line-strong);
+    color: var(--fg);
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+  /* ---------- Sections ---------- */
+  section { padding: 90px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .section-head { margin-bottom: 40px; }
+  .section-head .label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-head h2 {
+    font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    color: var(--fg);
+  }
+
+  /* About */
+  .about p {
+    font-size: 1.15rem;
+    color: #d9d4c7;
+    max-width: 66ch;
+    margin-bottom: 20px;
+  }
+  .about p:last-child { margin-bottom: 0; }
+  .about strong { font-weight: 700; color: var(--accent-light); }
+
+  /* Skills */
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--fg);
+    background: rgba(255, 255, 255, 0.03);
+    transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .tag:hover {
+    transform: translateY(-2px);
+    color: #0a0a0b;
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    border-color: var(--accent);
+  }
+
+  /* Projects */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 30px;
+    background: linear-gradient(160deg, var(--surface-soft), var(--surface));
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--line-strong);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(212, 175, 55, 0.08);
+  }
+  .card .role {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .card h3 {
+    font-size: 1.35rem;
+    letter-spacing: -0.01em;
+    color: var(--fg);
+    margin-bottom: 10px;
+  }
+  .card p {
+    font-size: 1.05rem;
+    color: var(--muted);
+  }
+
+  /* Interests */
+  #interests .card:nth-child(1) { border-top: 2px solid var(--accent); }
+  #interests .card:nth-child(2) { border-top: 2px solid var(--accent-light); }
+  #interests .card:nth-child(3) { border-top: 2px solid var(--accent-dark); }
+  #interests .card:nth-child(4) { border-top: 2px solid var(--accent-light); }
+  #interests .card:nth-child(5) { border-top: 2px solid var(--accent-dark); }
+
+  /* Contact */
+  .contact p.lead {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 54ch;
+    margin-bottom: 30px;
+  }
+  .contact-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 28px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--fg);
+    background: rgba(255, 255, 255, 0.03);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease,
+      background 0.2s ease;
+  }
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: #0a0a0b;
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    transform: translateY(-2px);
+  }
+  .contact-link span { color: var(--accent); font-weight: 700; }
+  .contact-link:hover span { color: #0a0a0b; }
+
+  /* Footer */
+  footer {
+    padding: 46px 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+    text-align: center;
+    background: #08080a;
+    border-top: 1px solid var(--line);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 640px) {
+    html { font-size: 17px; }
+    .nav .wrap { height: 62px; }
+    .nav .brand { font-size: 1rem; }
+    .nav ul { gap: 12px; font-size: 0.85rem; }
+    .nav ul li:nth-child(n+5) { display: none; }
+    .hero { padding: 72px 0 64px; }
+    .hero h1 { max-width: none; }
+    .hero p { font-size: 1.1rem; }
+    section { padding: 64px 0; }
+    .card { padding: 26px; }
+    .contact-link { width: 100%; justify-content: flex-start; }
+  }
+
+  @media (max-width: 380px) {
+    .nav ul li:nth-child(n+4) { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top">강태영</a>
+      <nav>
+        <ul>
+          <li><a href="#about">소개</a></li>
+          <li><a href="#skills">역량</a></li>
+          <li><a href="#interests">관심사</a></li>
+          <li><a href="#projects">프로젝트</a></li>
+          <li><a href="#contact">연락</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="wrap">
+        <span class="eyebrow">Sport Science &amp; Health</span>
+        <h1>스포츠와 과학의 접목으로, 건강과 퍼포먼스를 설계합니다.</h1>
+        <p>강태영 · 스포츠과학 전공 대학생. 돈도 벌고 건강도 지키는 삶을 꿈꾸며, 스포츠 현장의 감각에 과학적 데이터를 접목합니다.</p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="#projects">프로젝트 보기</a>
+          <a class="btn btn-ghost" href="#contact">연락하기</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="label">About</div>
+          <h2>소개</h2>
+        </div>
+        <p>
+          안녕하세요, <strong>강태영</strong>입니다. 스포츠와 과학의 접목을 공부하는 스포츠과학 전공 대학생입니다.
+          운동 현장의 감각을 데이터와 원리로 해석하고, 그 결과를 다시 훈련과 건강 관리에 적용하는 과정에 관심이 있습니다.
+        </p>
+        <p>
+          주로 <strong>운동 생리학</strong>, <strong>스포츠 트레이닝</strong>, <strong>건강 데이터 분석</strong>을 공부하며,
+          팀 프로젝트와 실습에서 측정부터 분석, 피드백까지 경험했습니다.
+        </p>
+        <p>
+          앞으로는 스포츠의 감각과 과학의 논리를 함께 다루며, 건강과 퍼포먼스를 동시에 끌어올리는 사람으로 성장하고 싶습니다.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="label">Skills &amp; Interests</div>
+          <h2>역량과 관심사</h2>
+        </div>
+        <div class="tags">
+          <span class="tag">운동 생리학</span>
+          <span class="tag">스포츠 트레이닝</span>
+          <span class="tag">체력 측정</span>
+          <span class="tag">건강 데이터 분석</span>
+          <span class="tag">운동 처방</span>
+          <span class="tag">스포츠 영양</span>
+          <span class="tag">Excel / Spreadsheet</span>
+          <span class="tag">Python 기초</span>
+          <span class="tag">Notion</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="label">Interests</div>
+          <h2>관심사</h2>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="role">Taste &amp; Culture</div>
+            <h3>위스키</h3>
+            <p>산지와 숙성에 따라 달라지는 향과 맛을 기록하고, 나만의 취향을 찾아가는 재미를 좋아합니다.</p>
+          </article>
+          <article class="card">
+            <div class="role">Sport</div>
+            <h3>펜싱</h3>
+            <p>순간의 판단과 빠른 발놀림이 필요한 펜싱을 즐깁니다. 운동이면서 동시에 두뇌 싸움이라 매력적입니다.</p>
+          </article>
+          <article class="card">
+            <div class="role">Finance</div>
+            <h3>주식</h3>
+            <p>기업과 시장을 공부하며 돈의 흐름을 읽는 연습을 합니다. 건강과 함께 재테크도 꾸준히 챙기고 싶습니다.</p>
+          </article>
+          <article class="card">
+            <div class="role">Technology</div>
+            <h3>AI</h3>
+            <p>인공지능이 스포츠와 건강 관리에 어떻게 활용되는지에 관심이 많습니다. 데이터로 훈련을 분석하고 예측하는 기술을 배우고 싶습니다.</p>
+          </article>
+          <article class="card">
+            <div class="role">Semiconductor</div>
+            <h3>반도체</h3>
+            <p>AI와 스포츠 기술의 기반이 되는 반도체 산업을 공부합니다. 작은 칩 하나가 세상을 바꾸는 구조에 흥미를 느낍니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="label">Projects &amp; Experience</div>
+          <h2>프로젝트</h2>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="role">개인 프로젝트 · 2025</div>
+            <h3>자체 분류모델 개발</h3>
+            <p>데이터 수집과 라벨링부터 모델 학습, 성능 평가까지 직접 수행하며 나만의 분류모델을 개발했습니다. 정확도와 일반화 성능을 비교하며 개선 과정을 기록했습니다.</p>
+          </article>
+          <article class="card">
+            <div class="role">연구 · 2025</div>
+            <h3>해부학과 운동생리학을 통한 펜싱 퍼포먼스 향상</h3>
+            <p>펜싱 동작을 해부학적 구조와 운동생리학 원리로 분석하고, 근력·반응속도·지구력 향상을 위한 훈련 방법을 연구했습니다.</p>
+          </article>
+          <article class="card">
+            <div class="role">스터디 · 2025</div>
+            <h3>AI 추론 특화 반도체 공부</h3>
+            <p>AI 추론 연산에 특화된 반도체 구조와 NPU, 메모리 병목 등 하드웨어 가속 기술을 공부하며 AI와 반도체의 연결 지점을 탐구했습니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="label">Contact</div>
+          <h2>연락</h2>
+        </div>
+        <p class="lead">협업 제안, 인턴십, 커피챗 모두 환영합니다. 편하게 연락 주세요.</p>
+        <div class="contact-list">
+          <a class="contact-link" href="mailto:tykang2004y@naver.com">
+            <span>Email</span> tykang2004y@naver.com
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      © 2026 강태영. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
